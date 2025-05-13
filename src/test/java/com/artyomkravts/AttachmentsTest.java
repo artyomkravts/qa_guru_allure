@@ -25,7 +25,7 @@ public class AttachmentsTest {
     public void testWithLambdaStepsAndAttachment() {
         step("Open " + GITHUBLINK + " and take screenshot", () -> {
             open(GITHUBLINK);
-            attachment("Source", webdriver().driver().source()); // прикрепить web страничку в репорт
+            attachment("Source", webdriver().driver().source());
         });
 
         step("Search for repository: " + REPOSITORY, () -> {
