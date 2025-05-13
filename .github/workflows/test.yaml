@@ -4,13 +4,13 @@ on: [push]
 
 jobs:
   test:
-    check-bats-version:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-java@v4
         with:
-          distribution: 'zulu' # See 'Supported distributions' for available options
+          distribution: 'zulu'
           java-version: '21'
-    with:
+
       - run: ./gradlew clean test
