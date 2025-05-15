@@ -21,13 +21,17 @@ jobs:
       - name: Run Tests
         run: chmod +x gradlew && ./gradlew clean test -Dselenide.remote=http://localhost:4444/wd/hub
 
-
-      - name: Prepare Allure results
+      - name: Install Allure CLI
         run: |
-          mkdir -p allure-results
-          cp -r build/allure-results/* allure-results/
+          sudo apt-get update
+          sudo apt-get install allure
 
-      - name: Publish Allure Report
+      - name: Generate Allure Report (in default Gradle location)
+        run: |
+          # Generate report directly into Gradle's default directory
+          allure generate build/allure-results --clean -o build/reports/allure-report
+
+      - name: Publish Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: always()
         with:
